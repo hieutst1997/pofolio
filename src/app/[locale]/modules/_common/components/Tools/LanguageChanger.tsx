@@ -5,13 +5,13 @@ import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import i18nConfig from '../../../../../../../i18nConfig';
 
-export default function LanguageChanger() {
+export const LanguageChanger = () => {
   const { i18n } = useTranslation();
   const currentLocale = i18n.language;
   const router = useRouter();
   const currentPathname = usePathname();
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const newLocale = e.target.value;
 
     // set cookie for next-i18n-router
@@ -23,8 +23,7 @@ export default function LanguageChanger() {
 
     // redirect to the new locale path
     if (
-      currentLocale === i18nConfig.defaultLocale &&
-      !i18nConfig.prefixDefault
+      currentLocale === i18nConfig.defaultLocale
     ) {
       router.push('/' + newLocale + currentPathname);
     } else {
@@ -38,9 +37,9 @@ export default function LanguageChanger() {
 
   return (
     <select onChange={handleChange} value={currentLocale}>
-      <option value="en">English</option>
-      <option value="it">Italian</option>
-      <option value="fr">French</option>
+      <option value="vi">Viet Nam</option>
+      <option value="en">Enlish</option>
+      <option value="zh">China</option>
     </select>
   );
 }
